@@ -11,19 +11,23 @@ class ChatBar extends React.Component {
         this.onContentChange = this.onContentChange.bind(this);
         this.onUserNameChange = this.onUserNameChange.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
-        
+
     }
     onContentChange(event) {
         this.setState({ content: event.target.value })
     }
     onUserNameChange(event) {
-        this.setState({ username: event.target.value })
+        console.log('changes' , event.target.value)
+        console.log('what is this function', this.props.currentUser);
+        this.props.changeUsername(event.target.value)
+       // this.setState({ username: event.target.value })
     }
 
-    handleKeyPress(event){
-        if (event.key ==='Enter'){
-            this.props.newPost(this.state.username ?  this.state.username : 'Anonymous User', this.state.content)
-            this.props.socket.onopen( (event) => {
+    handleKeyPress(event) {
+        if (event.key === 'Enter') {
+            console.log('this was sent' , this.props.currentUser);
+            this.props.newPost(this.props.currentUser , this.state.content)
+            this.props.socket.onopen((event) => {
                 socket.send(this.state.content);
             });
         }
@@ -32,7 +36,7 @@ class ChatBar extends React.Component {
     render() {
         return (
             <footer className="chatbar">
-                <input className="chatbar-username" onChange={this.onUserNameChange} placeholder="Your Name (Optional)" value={this.state.username} />
+                <input className="chatbar-username" onChange={this.onUserNameChange} placeholder='Enter a Name' defaultValue={this.props.currentUser} />
                 <input className="chatbar-message"
                     onChange={this.onContentChange}
                     onKeyPress={this.handleKeyPress}
