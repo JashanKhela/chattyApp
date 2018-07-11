@@ -22,7 +22,7 @@ class ChatBar extends React.Component {
 
     handleKeyPress(event){
         if (event.key ==='Enter'){
-            this.props.newPost(this.state.username , this.state.content)
+            this.props.newPost(this.state.username ?  this.state.username : 'Anonymous User', this.state.content)
             this.props.socket.onopen( (event) => {
                 socket.send(this.state.content);
             });
