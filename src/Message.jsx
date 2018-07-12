@@ -1,5 +1,5 @@
 import React from 'react';
- function Message(props) {
+function Message(props) {
 
     return (<div >
         <div className="message">
@@ -12,6 +12,6 @@ import React from 'react';
     </div>)
 }
 
-export {Message};
+export { Message };
 {/* <span className="message-username">{props}</span>
         <span className="message-content">{props}</span> */}

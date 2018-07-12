@@ -16,12 +16,14 @@ class App extends Component {
     this.newPost = this.newPost.bind(this);
     this.changeUsername = this.changeUsername.bind(this);
   }
-  newPost(username, content) {
+  newPost(username, content, messagetype) {
     this.message['username'] = username;
     this.message.content = content;
+    this.message.type = messagetype
+    console.log("this is our new message object", this.message)
   }
-  changeUsername(username){
-    this.setState({currentUser : username})
+  changeUsername(username) {
+    this.setState({ currentUser: username })
   }
   componentDidMount() {
     this.socket.onopen = (event) => {

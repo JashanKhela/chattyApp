@@ -17,16 +17,15 @@ class ChatBar extends React.Component {
         this.setState({ content: event.target.value })
     }
     onUserNameChange(event) {
-        console.log('changes' , event.target.value)
-        console.log('what is this function', this.props.currentUser);
-        this.props.changeUsername(event.target.value)
-       // this.setState({ username: event.target.value })
-    }
 
+        this.props.changeUsername(event.target.value)
+        // this.setState({ username: event.target.value })
+    }
     handleKeyPress(event) {
+        const messageType = 'postMessage'
         if (event.key === 'Enter') {
-            console.log('this was sent' , this.props.currentUser);
-            this.props.newPost(this.props.currentUser , this.state.content)
+            console.log('this was sent', this.props.currentUser);
+            this.props.newPost(this.props.currentUser, this.state.content, messageType)
             this.props.socket.onopen((event) => {
                 socket.send(this.state.content);
             });
