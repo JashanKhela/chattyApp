@@ -5,7 +5,7 @@ class ChatBar extends React.Component {
         console.log("props in message list ", props)
         this.state = {
             content: '',
-            username: ''
+            username: this.props.currentUser
 
         }
         this.onContentChange = this.onContentChange.bind(this);
@@ -18,24 +18,20 @@ class ChatBar extends React.Component {
     }
     onUserNameChange(event) {
 
-        this.props.changeUsername(event.target.value)
-        // this.setState({ username: event.target.value })
+        // this.props.changeUsername(event.target.value)
+        this.setState({ username: event.target.value })
     }
     handleKeyPress(event) {
         const messageType = 'postMessage'
         if (event.key === 'Enter') {
             console.log('this was sent', this.props.currentUser);
-            this.props.newPost(this.props.currentUser, this.state.content, messageType)
-            this.props.socket.onopen((event) => {
-                socket.send(this.state.content);
-            });
+            this.props.newPost(this.state.username, this.state.content, messageType);
         }
     }
-
     render() {
         return (
             <footer className="chatbar">
-                <input className="chatbar-username" onChange={this.onUserNameChange} placeholder='Enter a Name' defaultValue={this.props.currentUser} />
+                <input className="chatbar-username" onChange={this.onUserNameChange} placeholder='Enter a Name' defaultValue={this.state.username} />
                 <input className="chatbar-message"
                     onChange={this.onContentChange}
                     onKeyPress={this.handleKeyPress}

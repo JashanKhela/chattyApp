@@ -17,26 +17,52 @@ class App extends Component {
     this.changeUsername = this.changeUsername.bind(this);
   }
   newPost(username, content, messagetype) {
-    this.message['username'] = username;
-    this.message.content = content;
-    this.message.type = messagetype
-    console.log("this is our new message object", this.message)
+    console.log('current user', this.state.currentUser)
+    console.log('username =', username);
+    if (this.state.currentUser !== username) {
+      let obj = {
+        username: this.state.currentUser,
+        newUser: username,
+        content: content,
+        type: 'postNotification'
+      }
+      this.socket.send(JSON.stringify(obj));
+    } else {
+      //if(this.state.currentUser)
+      this.message['username'] = username;
+      this.message.content = content;
+      this.message.type = messagetype
+      this.socket.send(JSON.stringify(this.message));
+    }
+
+
   }
   changeUsername(username) {
+
     this.setState({ currentUser: username })
   }
+
   componentDidMount() {
-    this.socket.onopen = (event) => {
-      this.socket.send(JSON.stringify(this.message))
-    };
+
     this.socket.onmessage = (event) => {
       var obj = JSON.parse(event.data);
-      this.setState({
-        messages: [...this.state.messages, {
-          username: obj['username'],
-          content: obj['content'], id: obj['id']
-        }]
-      })
+      if (obj.type === 'incomingMessage') {
+        this.setState({
+          messages: [...this.state.messages, {
+            username: obj['username'],
+            content: obj['content'], id: obj['id']
+          }]
+        })
+      } else {
+        this.setState({
+          messages: [...this.state.messages, {
+            username: obj['username'],
+            content: obj['content'], id: obj['id'],
+            Notification: obj['message']
+          }]
+        })
+      }
+
     }
   }
   render() {
@@ -45,7 +71,7 @@ class App extends Component {
 
         <Navbar />
         <MessageList messages={this.state.messages} currentuser={this.state.currentUser} />
-        <ChatBar currentUser={this.state.currentUser} newPost={this.newPost} socket={this.socket} changeUsername={this.changeUsername} />
+        <ChatBar currentUser={this.state.currentUser} newPost={this.newPost}  changeUsername={this.changeUsername} />
       </div>
     );
   }
