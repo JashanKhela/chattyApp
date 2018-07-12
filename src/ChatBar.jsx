@@ -2,7 +2,6 @@ import React from 'react';
 class ChatBar extends React.Component {
     constructor(props) {
         super(props);
-        console.log("props in message list ", props)
         this.state = {
             content: '',
             username: this.props.currentUser
@@ -24,15 +23,15 @@ class ChatBar extends React.Component {
     handleKeyPress(event) {
         const messageType = 'postMessage'
         if (event.key === 'Enter') {
-            console.log('this was sent', this.props.currentUser);
             this.props.newPost(this.state.username, this.state.content, messageType);
+            this.setState({content : ''})
         }
     }
     render() {
         return (
             <footer className="chatbar">
                 <input className="chatbar-username" onChange={this.onUserNameChange} placeholder='Enter a Name' defaultValue={this.state.username} />
-                <input className="chatbar-message"
+                <input className="chatbar-message" id='chatbar'
                     onChange={this.onContentChange}
                     onKeyPress={this.handleKeyPress}
                     placeholder="Type a message and hit ENTER"

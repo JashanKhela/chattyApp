@@ -12,9 +12,11 @@ class App extends Component {
     this.state = {
       currentUser: 'Bob',
       messages: [],
+      users : 0
     }
     this.newPost = this.newPost.bind(this);
     this.changeUsername = this.changeUsername.bind(this);
+    
   }
   newPost(username, content, messagetype) {
     console.log('current user', this.state.currentUser)
@@ -43,9 +45,14 @@ class App extends Component {
   }
 
   componentDidMount() {
-
     this.socket.onmessage = (event) => {
       var obj = JSON.parse(event.data);
+     
+      if(obj.type === 'usersOnline') {
+        this.setState({users: obj.usersOnline})
+        console.log("hey hey hye there is this many people on ", this.onlineUsers)
+        
+      }
       if (obj.type === 'incomingMessage') {
         this.setState({
           messages: [...this.state.messages, {
@@ -69,7 +76,7 @@ class App extends Component {
     return (
       <div>
 
-        <Navbar />
+        <Navbar usersOnline={this.state.users}/>
         <MessageList messages={this.state.messages} currentuser={this.state.currentUser} />
         <ChatBar currentUser={this.state.currentUser} newPost={this.newPost}  changeUsername={this.changeUsername} />
       </div>
