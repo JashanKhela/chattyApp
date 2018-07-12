@@ -2,7 +2,7 @@ h1 {
   color: tomato;
 }
 body {
-  background: white;
+  background: lightblue ;
   color: black;
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
@@ -10,7 +10,7 @@ body {
 }
 
 .chatbar {
-  background: tomato;
+  background: #476acc;
   border-top: 1px solid black;
   bottom: 0;
   display: flex;
@@ -64,8 +64,14 @@ body {
   font-weight: 700;
 }
 
+.useronline{
+  float:right ;
+  font-size: medium;
+    padding: 30px;
+}
+
 .navbar {
-  background: tomato;
+  background: #476acc;
   border-bottom: 1px solid black;
   height: 60px;
   left: 0;
