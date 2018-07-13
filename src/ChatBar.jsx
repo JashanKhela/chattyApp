@@ -5,7 +5,6 @@ class ChatBar extends React.Component {
         this.state = {
             content: '',
             username: this.props.currentUser
-
         }
         this.onContentChange = this.onContentChange.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -19,7 +18,7 @@ class ChatBar extends React.Component {
         if (event.key === 'Enter') {
             let username = document.querySelector('.chatbar-username').value;
             this.props.newPost(username, this.state.content, messageType);
-            this.setState({content : ''})
+            this.setState({ content: '' })
         }
     }
     render() {
@@ -34,6 +33,5 @@ class ChatBar extends React.Component {
             </footer>
         )
     }
-
 }
 export { ChatBar }

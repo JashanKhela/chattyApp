@@ -1,45 +1,39 @@
-React Boilerplate
-=====================
+# Tweeter Project
 
-A minimal and light dev environment for ReactJS.
+ChattyApp is an web-chat application built using React and Websockets. The main purpose of this app is to provide users with a real time chat application to talk to fellow users in the chat room.
 
-### Usage
+## Final Product
+!["Screenshot of Home Page "](https://github.com/JashanKhela/tweeter/blob/master/docs/tweeter-home-page.png?raw=true)
+!["Screenshot of Home Page with two users"](https://github.com/JashanKhela/tweeter/blob/master/docs/compose-tweet.png?raw=true)
+!["Screenshot of Home page with multiple users connected"](https://github.com/JashanKhela/tweeter/blob/master/docs/new-tweet.png?raw=true)
 
-Clone the boilerplate and create your own git repo.
 
-```
-git clone git@github.com:lighthouse-labs/react-simple-boilerplate.git
-cd react-simple-boilerplate
-git remote rm origin
-git remote add origin [YOUR NEW REPOSITORY]
-# Manually update your package.json file
-```
+## Dependencies
 
-Install the dependencies and start the server.
+- babel-core
+- babel-loader
+- babel-preset-es2015
+- babel-preset-react
+- css-loader
+- node-sass
+- sass-loader
+- sockjs-client
+- style-loader
+- webpack
+- webpack-dev-server
+- react
+- react-dom
+- 
+## Getting Started
 
-```
-npm install
-npm start
-open http://localhost:3000
-```
+- Install all the required dependencies (this can be done using 'npm install <package> command').
+- Run the development web server using the 'node server.js' command.
+- Run the main application page using 'npm start' command.
 
-### Static Files
+## Functionality
 
-You can store static files like images, fonts, etc in the `build` folder.
+- Connect to a chat room
+- View the number of users online
+- View posts by other users
+- Each user has their own color
 
-For example, if you copy a file called my_image.png into the build folder you can access it using `http://localhost:3000/build/my_image.png`.
-
-### Linting
-
-This boilerplate project includes React ESLint configuration.
-
-```
-npm run lint
-```
-
-### Dependencies
-
-* React
-* Webpack
-* [babel-loader](https://github.com/babel/babel-loader)
-* [webpack-dev-server](https://github.com/webpack/webpack-dev-server)

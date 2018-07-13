@@ -1,3 +1,4 @@
+// this is the component that renders the complete messages
 import React from 'react';
 import { Message } from './Message.jsx'
 class MessageList extends React.Component {

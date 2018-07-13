@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { MessageList } from './MessageList.jsx';
 import { ChatBar } from './ChatBar.jsx';
 import { Navbar } from './navbar.jsx';
-// import { Message } from './Message.jsx';
-
+// This is the parent component
 class App extends Component {
   constructor(props) {
     super(props);
@@ -13,15 +12,12 @@ class App extends Component {
       currentUser: 'Bob',
       messages: [],
       users: 0,
-      
     }
     this.newPost = this.newPost.bind(this);
     this.changeUsername = this.changeUsername.bind(this);
-
   }
   newPost(username, content, messagetype) {
     if (this.state.currentUser !== username) {
-
       let obj = {
         username: this.state.currentUser,
         newUser: username,
@@ -39,21 +35,15 @@ class App extends Component {
       this.message.type = messagetype
       this.socket.send(JSON.stringify(this.message));
     }
-
-
   }
   changeUsername(username) {
-
     this.setState({ currentUser: username })
   }
-
   componentDidMount() {
     this.socket.onmessage = (event) => {
       var obj = JSON.parse(event.data);
       if (obj.type === 'usersOnline') {
         this.setState({ users: obj.usersOnline })
-
-
       }
       if (obj.type === 'incomingMessage') {
         this.setState({
@@ -70,7 +60,7 @@ class App extends Component {
             username: obj['username'],
             content: obj['content'],
             id: obj['id'],
-            color : obj.color
+            color: obj.color
           }]
         })
       }

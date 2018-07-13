@@ -1,3 +1,4 @@
+// This is the message component that renders the message either with or without notification
 import React from 'react';
 class Message extends React.Component {
     constructor(props) {
