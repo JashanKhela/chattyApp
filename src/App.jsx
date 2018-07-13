@@ -13,7 +13,7 @@ class App extends Component {
       currentUser: 'Bob',
       messages: [],
       users: 0,
-      userColor: ''
+      
     }
     this.newPost = this.newPost.bind(this);
     this.changeUsername = this.changeUsername.bind(this);
@@ -70,6 +70,7 @@ class App extends Component {
             username: obj['username'],
             content: obj['content'],
             id: obj['id'],
+            color : obj.color
           }]
         })
       }

@@ -6,7 +6,7 @@ class MessageList extends React.Component {
     }
     render() {
         const messages = this.props.messages;
-        const renderedMessages = messages.map((message, index) => <Message key={index} username={message.username} content={message.content} Notification={message.Notification} color={this.props.color} />);
+        const renderedMessages = messages.map((message, index) => <Message key={index} username={message.username} content={message.content} Notification={message.Notification} color={message.color} />);
 
         return (
             <div>
