@@ -12,22 +12,25 @@ class App extends Component {
     this.state = {
       currentUser: 'Bob',
       messages: [],
-      users : 0
+      users: 0,
+      userColor: ''
     }
     this.newPost = this.newPost.bind(this);
     this.changeUsername = this.changeUsername.bind(this);
-    
+
   }
   newPost(username, content, messagetype) {
-    console.log('current user', this.state.currentUser)
-    console.log('username =', username);
     if (this.state.currentUser !== username) {
+
       let obj = {
         username: this.state.currentUser,
         newUser: username,
         content: content,
         type: 'postNotification'
       }
+      this.setState({
+        currentUser: username
+      })
       this.socket.send(JSON.stringify(obj));
     } else {
       //if(this.state.currentUser)
@@ -47,11 +50,10 @@ class App extends Component {
   componentDidMount() {
     this.socket.onmessage = (event) => {
       var obj = JSON.parse(event.data);
-     
-      if(obj.type === 'usersOnline') {
-        this.setState({users: obj.usersOnline})
-        console.log("hey hey hye there is this many people on ", this.onlineUsers)
-        
+      if (obj.type === 'usersOnline') {
+        this.setState({ users: obj.usersOnline })
+
+
       }
       if (obj.type === 'incomingMessage') {
         this.setState({
@@ -62,10 +64,12 @@ class App extends Component {
         })
       } else {
         this.setState({
+          userColor: obj['color'],
           messages: [...this.state.messages, {
+            Notification: obj['message'],
             username: obj['username'],
-            content: obj['content'], id: obj['id'],
-            Notification: obj['message']
+            content: obj['content'],
+            id: obj['id'],
           }]
         })
       }
@@ -73,12 +77,12 @@ class App extends Component {
     }
   }
   render() {
+
     return (
       <div>
-
-        <Navbar usersOnline={this.state.users}/>
-        <MessageList messages={this.state.messages} currentuser={this.state.currentUser} />
-        <ChatBar currentUser={this.state.currentUser} newPost={this.newPost}  changeUsername={this.changeUsername} />
+        <Navbar usersOnline={this.state.users} />
+        <MessageList messages={this.state.messages} currentuser={this.state.currentUser} color={this.state.userColor} />
+        <ChatBar currentUser={this.state.currentUser} newPost={this.newPost} changeUsername={this.changeUsername} />
       </div>
     );
   }

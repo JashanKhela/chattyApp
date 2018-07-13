@@ -1,12 +1,12 @@
 import React from 'react';
 
-function Navbar(props){
-    console.log('props insdide the nav bar',props)
-    return(
+function Navbar(props) {
+
+    return (
         <nav className="navbar">
-          <a href="/" className="navbar-brand">Chatty</a>
-          <div className ="useronline" >{props.usersOnline} Users online</div>
+            <a href="/" className="navbar-brand">Chatty</a>
+            <div className="useronline" >{props.usersOnline} Users online</div>
         </nav>
     )
 }
-export {Navbar};
+export { Navbar };
