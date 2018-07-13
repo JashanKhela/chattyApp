@@ -1,11 +1,11 @@
-# Tweeter Project
+# ChattyApp
 
 ChattyApp is an web-chat application built using React and Websockets. The main purpose of this app is to provide users with a real time chat application to talk to fellow users in the chat room.
 
 ## Final Product
-!["Screenshot of Home Page "](https://github.com/JashanKhela/tweeter/blob/master/docs/tweeter-home-page.png?raw=true)
-!["Screenshot of Home Page with two users"](https://github.com/JashanKhela/tweeter/blob/master/docs/compose-tweet.png?raw=true)
-!["Screenshot of Home page with multiple users connected"](https://github.com/JashanKhela/tweeter/blob/master/docs/new-tweet.png?raw=true)
+!["Screenshot of Home Page "](https://github.com/JashanKhela/chattyApp/blob/master/docs/singleUser.png?raw=true)
+!["Screenshot of Home Page with two users"](https://github.com/JashanKhela/chattyApp/blob/master/docs/twoUsers.png?raw=true)
+!["Screenshot of Home page with multiple users connected"](https://github.com/JashanKhela/chattyApp/blob/master/docs/multipleUsers.png?raw=true)
 
 
 ## Dependencies
